@@ -28,7 +28,7 @@ public static class MauiProgram
 
 		builder.Services.AddSingleton<BattlePage>();
 
-        builder.Services.AddSingleton<ViewModelLocator>();
+        builder.Services.AddSingleton<SharedDataService>();
 
         return builder.Build();
 	}

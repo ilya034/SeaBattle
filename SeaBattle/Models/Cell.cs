@@ -5,6 +5,7 @@ public enum CellState
     Empty,
     Ship,
     NearShip,
+    Destroyed,
     Miss
 }
 public class Cell

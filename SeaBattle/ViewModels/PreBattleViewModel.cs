@@ -1,13 +1,19 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using SeaBattle.Messages;
+﻿using SeaBattle.Services;
 using SeaBattle.Models;
 
 namespace SeaBattle.ViewModels;
 
 public partial class PreBattleViewModel : BaseViewModel
 {
+    private readonly SharedDataService _sharedDataService;
+
     [ObservableProperty]
     GameState _gameState = new();
+
+    public PreBattleViewModel(SharedDataService sharedDataService)
+    {
+        _sharedDataService = sharedDataService;
+    }
 
     [RelayCommand]
     public void MakeRandomPlayerPlacement()
@@ -19,6 +25,6 @@ public partial class PreBattleViewModel : BaseViewModel
     public void GoToBattlePage()
     {
         Shell.Current.GoToAsync(nameof(BattlePage));
-        WeakReferenceMessenger.Default.Send(new GameStateMessage(GameState));
+        _sharedDataService.UpdateData(GameState);
     }
 }

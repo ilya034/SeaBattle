@@ -1,24 +1,24 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using SeaBattle.Messages;
+﻿using SeaBattle.Services;
 using SeaBattle.Models;
 
 namespace SeaBattle.ViewModels;
 
-public partial class BattleViewModel : BaseViewModel, IRecipient<GameStateMessage>
+public partial class BattleViewModel : BaseViewModel
 {
+    private readonly SharedDataService _sharedDataService;
+
     [ObservableProperty]
     GameState _gameState = new();
 
-    IConnectivity connectivity;
-    public BattleViewModel()
+    public BattleViewModel(SharedDataService sharedDataService)
     {
-        this.connectivity = connectivity;
+        _sharedDataService = sharedDataService;
 
-        WeakReferenceMessenger.Default.Register<GameStateMessage>(this);
-    }
-
-    public void Receive(GameStateMessage message)
-    {
-        GameState = message.Value;
+        _sharedDataService.PropertyChanged += (sender, args) =>
+        {
+            if (args.PropertyName == nameof(SharedDataService.GameStateData))
+                GameState = _sharedDataService.GameStateData;
+        };
+        GameState = _sharedDataService.GameStateData;
     }
 }

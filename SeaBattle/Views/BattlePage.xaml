@@ -42,6 +42,7 @@
 
             <ctrl:FieldView x:Name="Player2FieldGraphicsView"
                             Cells="{Binding GameState.Player2.Field.Cells}"
+                            ShouldDrawShips="False"
                             WidthRequest="500"
                             HeightRequest="500">
 

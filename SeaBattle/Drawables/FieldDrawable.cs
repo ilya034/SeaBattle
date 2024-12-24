@@ -4,7 +4,18 @@ namespace SeaBattle.Drawables;
 
 public class FieldDrawable : IDrawable
 {
-    public Models.Cell[,] Cells;
+    public bool ShouldDrawShips = true;
+    private Models.Cell[,] _cells;
+
+    public Models.Cell[,] Cells
+    {
+        get => _cells;
+        set
+        {
+            ArgumentNullException.ThrowIfNull(value);
+            _cells = value;
+        }
+    }
 
     public void Draw(ICanvas canvas, RectF dirtyRect)
     {
@@ -22,8 +33,10 @@ public class FieldDrawable : IDrawable
                 {
                     if (Cells[i, j].State == CellState.Empty || Cells[i, j].State == CellState.NearShip)
                         canvas.FillColor = Colors.Black;
-                    else if (Cells[i, j].State == CellState.Ship)
+                    else if (Cells[i, j].State == CellState.Ship && ShouldDrawShips)
                         canvas.FillColor = Colors.DarkViolet;
+                    else if (Cells[i, j].State == CellState.Destroyed)
+                        canvas.FillColor = Colors.Red;
                     else if (Cells[i, j].State == CellState.Miss)
                         canvas.FillColor = Colors.White;
                 }
