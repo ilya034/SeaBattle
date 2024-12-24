@@ -1,6 +1,4 @@
-﻿using SeaBattle.Drawables;
-
-namespace SeaBattle.Views;
+﻿namespace SeaBattle.Views;
 
 public partial class PreBattlePage : ContentPage
 {

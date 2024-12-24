@@ -7,6 +7,7 @@ public partial class GameState : ObservableObject
 
     [ObservableProperty]
     Player _player1;
+
     [ObservableProperty]
     Player _player2;
 

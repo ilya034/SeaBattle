@@ -1,4 +1,6 @@
-﻿using SeaBattle.Models;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using SeaBattle.Messages;
+using SeaBattle.Models;
 
 namespace SeaBattle.ViewModels;
 
@@ -17,5 +19,6 @@ public partial class PreBattleViewModel : BaseViewModel
     public void GoToBattlePage()
     {
         Shell.Current.GoToAsync(nameof(BattlePage));
+        WeakReferenceMessenger.Default.Send(new GameStateMessage(GameState));
     }
 }
