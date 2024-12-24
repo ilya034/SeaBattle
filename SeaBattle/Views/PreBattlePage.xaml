@@ -15,7 +15,7 @@
         <ScrollView>
             <ctrl:FieldView x:Name="FieldView"
                             HorizontalOptions="Start"
-                            Field="{Binding Field}"
+                            Cells="{Binding GameState.Player1.Field.Cells}"
                             HeightRequest="500"
                             WidthRequest="500">
             </ctrl:FieldView>

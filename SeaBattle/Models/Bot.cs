@@ -2,4 +2,8 @@
 
 public partial class Bot : Player
 {
+    public Bot()
+    {
+        Field = Field.CreateRandomField();
+    }
 }

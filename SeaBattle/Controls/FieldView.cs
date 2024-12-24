@@ -5,18 +5,18 @@ namespace SeaBattle.Controls;
 
 public partial class FieldView : GraphicsView
 {
-    public static BindableProperty FieldProperty = BindableProperty.Create(nameof(Field),
+    public static BindableProperty CellsProperty = BindableProperty.Create(nameof(Field),
         typeof(Models.Cell[,]), typeof(FieldView), propertyChanged: static (bindable, oldValue, newValue) =>
         {
             var control = (FieldView)bindable;
-            control.fieldDrawable.Field = (Models.Cell[,])newValue;
+            control.fieldDrawable.Cells = (Models.Cell[,])newValue;
             control.Invalidate();
         });
 
-    public Models.Cell[,] Field
+    public Models.Cell[,] Cells
     {
-        get => GetValue(FieldProperty) as Models.Cell[,];
-        set => SetValue(FieldProperty, value);
+        get => GetValue(CellsProperty) as Models.Cell[,];
+        set => SetValue(CellsProperty, value);
     }
 
     FieldDrawable fieldDrawable;

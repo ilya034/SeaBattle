@@ -17,7 +17,7 @@
             </FlexLayout>
 
             <ctrl:FieldView x:Name="Player1FieldGraphicsView"
-                            Field="{Binding Player1Field}"
+                            Cells="{Binding GameState.Player1.Field.Cells}"
                             WidthRequest="500"
                             HeightRequest="500">
 
@@ -41,7 +41,7 @@
             </FlexLayout>
 
             <ctrl:FieldView x:Name="Player2FieldGraphicsView"
-                            Field="{Binding Player2Field}"
+                            Cells="{Binding GameState.Player2.Field.Cells}"
                             WidthRequest="500"
                             HeightRequest="500">
 

@@ -3,5 +3,5 @@ public partial class Player : ObservableObject
 {
     public int Score;
     [ObservableProperty]
-    public Cell[,] _field = GameState.CreateEmptyField();
+    public Field _field = Field.CreateEmptyField();
 }

@@ -5,12 +5,12 @@ namespace SeaBattle.ViewModels;
 public partial class PreBattleViewModel : BaseViewModel
 {
     [ObservableProperty]
-    Models.Cell[,] _field = GameState.CreateEmptyField();
+    GameState _gameState = new();
 
     [RelayCommand]
     public void MakeRandomPlayerPlacement()
     {
-        Field = GameState.CreateRandomField();
+        GameState.MakeRandomPlayerPlacement(GameState.Player1);
     }
 
     [RelayCommand]
