@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:vm="clr-namespace:SeaBattle.ViewModels"
+             xmlns:ctrl="clr-namespace:SeaBattle.Controls"
+			 x:Class="SeaBattle.Views.BattlePage"
+			 x:DataType="vm:BattleViewModel">
+
+    <HorizontalStackLayout VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           Margin="35">
+        <VerticalStackLayout>
+            <FlexLayout Direction="Row"
+                        JustifyContent="SpaceBetween">
+                <Label Text="Score: " />
+                <Label Text="Player1" />
+            </FlexLayout>
+
+            <ctrl:FieldView x:Name="Player1FieldGraphicsView"
+                            Field="{Binding Player1Field}"
+                            WidthRequest="500"
+                            HeightRequest="500">
+
+                <!--<GraphicsView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding }" />
+                </GraphicsView.GestureRecognizers>-->
+            </ctrl:FieldView>
+        </VerticalStackLayout>
+
+        <GraphicsView x:Name="ArrowStep"
+                      WidthRequest="50"
+                      HeightRequest="100">
+
+        </GraphicsView>
+
+        <VerticalStackLayout>
+            <FlexLayout Direction="Row"
+                        JustifyContent="SpaceBetween">
+                <Label Text="Player2" />
+                <Label Text="Score: " />
+            </FlexLayout>
+
+            <ctrl:FieldView x:Name="Player2FieldGraphicsView"
+                            Field="{Binding Player2Field}"
+                            WidthRequest="500"
+                            HeightRequest="500">
+
+                <!--<GraphicsView.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding }" />
+                </GraphicsView.GestureRecognizers>-->
+            </ctrl:FieldView>
+        </VerticalStackLayout>
+    </HorizontalStackLayout>
+</ContentPage>
