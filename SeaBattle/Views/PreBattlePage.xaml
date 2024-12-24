@@ -31,6 +31,7 @@
             <Button 
                 Text="Start battle"
                 Command="{Binding GoToBattlePageCommand}"
+                IsEnabled="{Binding GameState.Player1.Field.IsReady}"
                 FontSize="Medium" />
         </HorizontalStackLayout>
     </FlexLayout>

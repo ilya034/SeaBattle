@@ -20,10 +20,6 @@
                             Cells="{Binding GameState.Player1.Field.Cells}"
                             WidthRequest="500"
                             HeightRequest="500">
-
-                <!--<GraphicsView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding }" />
-                </GraphicsView.GestureRecognizers>-->
             </ctrl:FieldView>
         </VerticalStackLayout>
 
@@ -42,13 +38,14 @@
 
             <ctrl:FieldView x:Name="Player2FieldGraphicsView"
                             Cells="{Binding GameState.Player2.Field.Cells}"
-                            ShouldDrawShips="False"
+                            ShouldDrawShips="false"
                             WidthRequest="500"
                             HeightRequest="500">
 
-                <!--<GraphicsView.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding }" />
-                </GraphicsView.GestureRecognizers>-->
+                <ctrl:FieldView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                          NumberOfTapsRequired="2" />
+                </ctrl:FieldView.GestureRecognizers>
             </ctrl:FieldView>
         </VerticalStackLayout>
     </HorizontalStackLayout>

@@ -21,4 +21,9 @@ public partial class BattleViewModel : BaseViewModel
         };
         GameState = _sharedDataService.GameStateData;
     }
+
+    public void HandleTap(PointF pos)
+    {
+        GameState.Shoot(GameState.Player1, new Point((int)pos.X / 50, (int)pos.Y / 50));
+    }
 }

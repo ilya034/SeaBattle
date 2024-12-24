@@ -8,6 +8,7 @@ public enum CellState
     Destroyed,
     Miss
 }
+
 public class Cell
 {
     public int X;

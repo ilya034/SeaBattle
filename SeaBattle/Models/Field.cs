@@ -2,31 +2,27 @@
 
 public partial class Field : ObservableObject
 {
-    public Cell[,] Cells { get; }
+    [ObservableProperty]
+    Cell[,] _cells;
 
-    public Field(Cell[,] cells)
+    [ObservableProperty]
+    bool _isReady;
+
+    public Field()
     {
+        CreateEmptyField();
+        IsReady = false;
+    }
+
+    public void SetPlacement(Cell[,] cells)
+    {
+        ArgumentNullException.ThrowIfNull(cells);
         Cells = cells;
     }
 
-    public CellState GetShootResult()
+    public void MakeRandomPlacement()
     {
-        return CellState.Miss;
-    }
-
-    public static Field CreateEmptyField()
-    {
-        var cells = new Cell[GameState.FieldSize, GameState.FieldSize];
-        for (int i = 0; i < GameState.FieldSize; i++)
-            for (int j = 0; j < GameState.FieldSize; j++)
-                cells[i, j] = new Cell(i, j, CellState.Empty);
-
-        return new Field(cells);
-    }
-
-    public static Field CreateRandomField()
-    {
-        var cells = CreateEmptyField().Cells;
+        CreateEmptyField();
 
         foreach (var size in GameState.ShipsSize)
         {
@@ -34,15 +30,24 @@ public partial class Field : ObservableObject
             while (!placed)
             {
                 var ship = Ship.CreateRandomShip(size);
-                if (IsValidShipPlacement(ship, cells))
+                if (IsValidShipPlacement(ship, Cells))
                 {
-                    PlaceNewShip(ship, cells);
+                    PlaceNewShip(ship, Cells);
                     placed = true;
                 }
             }
         }
 
-        return new Field(cells);
+        IsReady = true;
+    }
+
+    public void CreateEmptyField()
+    {
+        Cells = new Cell[GameState.FieldSize, GameState.FieldSize];
+        for (int i = 0; i < GameState.FieldSize; i++)
+            for (int j = 0; j < GameState.FieldSize; j++)
+                Cells[i, j] = new Cell(i, j, CellState.Empty);
+        IsReady = false;
     }
 
     public static bool IsValidShipPlacement(Ship ship, Cell[,] cells)

@@ -18,13 +18,14 @@ public partial class PreBattleViewModel : BaseViewModel
     [RelayCommand]
     public void MakeRandomPlayerPlacement()
     {
-        GameState.MakeRandomPlayerPlacement(GameState.Player1);
+        GameState.MakeRandomPlayerPlacement();
+        _sharedDataService.UpdateData(GameState);
     }
 
     [RelayCommand]
     public void GoToBattlePage()
     {
-        Shell.Current.GoToAsync(nameof(BattlePage));
-        _sharedDataService.UpdateData(GameState);
+        if (GameState.Player1.Field.IsReady)
+            Shell.Current.GoToAsync(nameof(BattlePage));
     }
 }

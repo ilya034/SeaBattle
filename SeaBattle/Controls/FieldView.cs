@@ -8,9 +8,7 @@ public partial class FieldView : GraphicsView
     public static BindableProperty ShouldDrawShipsProperty = BindableProperty.Create(nameof(ShouldDrawShips),
         typeof(bool), typeof(FieldView), defaultValue: true, propertyChanged: static (bindable, oldValue, newValue) =>
         {
-            var control = (FieldView)bindable;
-            control.fieldDrawable.ShouldDrawShips = (bool)newValue;
-            control.Invalidate();
+            ((FieldView)bindable).Invalidate();
         });
 
     public static BindableProperty CellsProperty = BindableProperty.Create(nameof(Cells),
@@ -29,7 +27,7 @@ public partial class FieldView : GraphicsView
 
     public Models.Cell[,] Cells
     {
-        get => GetValue(CellsProperty) as Models.Cell[,];
+        get => (Models.Cell[,])GetValue(CellsProperty);
         set => SetValue(CellsProperty, value);
     }
 
@@ -37,8 +35,7 @@ public partial class FieldView : GraphicsView
 
     public FieldView()
     {
-        fieldDrawable = new FieldDrawable();
+        fieldDrawable = new FieldDrawable(this.ShouldDrawShips);
         this.Drawable = fieldDrawable;
-        fieldDrawable.ShouldDrawShips = this.ShouldDrawShips;
     }
 }
